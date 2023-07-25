@@ -35,7 +35,7 @@ You can check out the instance of this bot [here](t.me/ydb_serverless_example_bo
 5) Create Serverless Function with Python3.11 environment. In the Overview tab make it public, in the Editor tab create a first default version. <details><summary>Screenshots</summary>
 ![Yandex Console Screenshot](screenshots/08-create-function.png?raw=true "Title") ![Yandex Console Screenshot](screenshots/08-make-function-public.png?raw=true "Title") ![Yandex Console Screenshot](screenshots/09-create-default-function-version.png?raw=true "Title")</details>
 6) Copy your function ID. <details><summary>Screenshot</summary>
-![Yandex Console Screenshot](screenshots/10-copy-fucntion-id.png?raw=true "Title")</details>
+![Yandex Console Screenshot](screenshots/10-copy-function-id.png?raw=true "Title")</details>
 7) Create a link between API gateway and Function - edit API gateway specification and add the following code in the end, replacing `<function ID>` with copied value.
 - ```
   /fshtb-function:
