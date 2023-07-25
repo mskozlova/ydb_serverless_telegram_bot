@@ -161,3 +161,4 @@ cython_debug/
 
 # custom
 code.zip
+.DS_Store
