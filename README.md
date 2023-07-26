@@ -94,20 +94,35 @@ CREATE TABLE `states`
 ```
 
 ## Make your bot do something
-1) Download the code from this repository.
-2) Edit `create_function_version.sh` - fill the IDs and tokens inside `<>` brackets.
-3) Execute `create_function_version.sh` to create a zip archive with the code and create a new version of your function using Yandex Cloud API.
-4) (optional) Set commands for your bot via BotFather: send `/setcommands` anf the following text next <details><summary>Screenshot</summary>
-![Yandex Console Screenshot](screenshots/15-set-bot-commands.png?raw=true "Title")</details>
-```
-start - show welcome message and bot description
-register - store your name and age in the database
-cancel - stop registering process
-show_data - show your name and age stored in the database
-delete_account - delete your info from the database
-```
+1) Download ZIP archive with the code from this repository.
+2) In Editor tab of function:
+    - Choose uploading method `ZIP archive`.
+    - Click `Attach file` and select code archive.
+    - Fill `Entrypoint` field with `index.handler`
+    - Select your service account
+    - Create 3 environment variables: `YDB_DATABASE`, `YDB_ENDPOINT`, `BOT_TOKEN`. <details><summary>How to find their values</summary>
+      - `YDB_DATABASE` is a value from YDB database Overview tab: `Connection > Database`.
+      - `YDB_ENDPOINT` is a value from YDB database Overview tab: `Connection > Endpoint`.
+      - `BOT_TOKEN` is the token you received from BotFather after creating the new bot.</details>
+3) Click `Create version` and wait for it to be created.
 
-Awesome! Now try your bot!
+<details><summary>How it should look like in GUI - screenshot.</summary>
+
+![Yandex Console Screenshot](screenshots/16-create-function-version-gui.png?raw=true "Title")
+</details>
+
+</br>
+Alternatively, you can use command line interface to do that.
+<details><summary>Create Function version using CLI</summary>
+
+1) Download code from this repository.
+2) Edit `create_function_version.sh` - fill the placeholders with your IDs and tokens to set up all the necessary version parameters.
+3) Prepare Yandex Cloud command line interface - [instruction](https://cloud.yandex.com/en/docs/cli/quickstart).
+4) Execute `create_function_version.sh` to create a ZIP archive with the code and create a new version of your function using Yandex Cloud CLI.
+</details>
+
+</br>
+<b>Awesome! Now try your bot!</b>
 
 # Testing
 TBD...
