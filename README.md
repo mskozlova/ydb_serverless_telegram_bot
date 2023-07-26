@@ -47,7 +47,7 @@ You can check out the instance of this bot [here](t.me/ydb_serverless_example_bo
   ```
 
 ## Creating a bot and linking it with the function
-1) Create a telegram bot sending `/newbot` command for BotFather in Telegram. <details><summary>Screenshot</summary>
+1) Create a telegram bot by sending `/newbot` command for BotFather in Telegram. <details><summary>Screenshot</summary>
 ![Yandex Console Screenshot](screenshots/05-create-telegram-bot.png?raw=true "Title")</details>
 2) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway.
 ```
