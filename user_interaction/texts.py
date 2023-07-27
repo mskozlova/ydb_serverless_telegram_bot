@@ -1,5 +1,11 @@
 start_message = (
-    "Hello! This is a simple bot that can store your name and age, show it back to you and delete them if requested."
+    "Hello! This is a simple bot that can store your name and age, "
+    "show them back to you and delete them if requested.\n\n"
+    "List of commands:\n"
+    "/start\n"
+    "/register\n"
+    "/show_data\n"
+    "/delete_account"
 )
 
 cancel_message = "\n\nUse /cancel to abort the process."

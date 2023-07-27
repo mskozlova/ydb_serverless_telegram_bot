@@ -1,23 +1,6 @@
 USERS_INFO_TABLE_PATH = "user_personal_info"
 STATES_TABLE_PATH = "states"
-    
 
-# Manage tables queries
-# truncate_tables_queries = [
-#     """
-#     DELETE FROM `{}` ON SELECT * FROM `{}`
-#     """.format(table_name, table_name)
-#     for table_name in [
-#         USERS_TABLE_PATH,
-#         VOCABS_TABLE_PATH,
-#         GROUPS_TABLE_PATH,
-#         GROUPS_CONTENTS_TABLE_PATH,
-#         LANGUAGES_TABLE_PATH,
-#         TRAINING_SESSIONS_TABLE_PATH,
-#         TRAINING_SESSIONS_INFO_TABLE_PATH,
-#         STATES_TABLE_PATH,
-#     ]
-# ]
 
 get_user_state = f"""
     DECLARE $user_id AS Uint64;

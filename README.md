@@ -19,7 +19,7 @@ List of bot's functions:
 - shows the info back when required
 - supports deleting the database entry (i.e. 'deletes the account')
 
-You can check out the instance of this bot [here](t.me/ydb_serverless_example_bot).
+You can check out the instance of this bot [here](https://t.me/ydb_serverless_example_bot).
 
 # How to set up an instance of the bot
 
@@ -37,19 +37,19 @@ You can check out the instance of this bot [here](t.me/ydb_serverless_example_bo
 6) Copy your function ID. <details><summary>Screenshot</summary>
 ![Yandex Console Screenshot](screenshots/10-copy-function-id.png?raw=true "Title")</details>
 7) Create a link between API gateway and Function - edit API gateway specification and add the following code in the end, replacing `<function ID>` with copied value.
-- ```
+```
   /fshtb-function:
     post:
       x-yc-apigateway-integration:
         type: cloud_functions
         function_id: <function ID>
       operationId: fshtb-function
-  ```
+```
 
 ## Creating a bot and linking it with the function
 1) Create a telegram bot by sending `/newbot` command for BotFather in Telegram. <details><summary>Screenshot</summary>
 ![Yandex Console Screenshot](screenshots/05-create-telegram-bot.png?raw=true "Title")</details>
-2) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway.
+2) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway. All went well if you receive response `{"ok":true,"result":true,"description":"Webhook was set"}`.
 ```
 curl \
   --request POST \
@@ -57,6 +57,7 @@ curl \
   --header 'content-type: application/json' \
   --data '{"url": "<API gateway domain>/fshtb-function"}'
 ```
+
 
 At this stage sending `/start` to your bot should lead to successful POST requests from API gateway and successful Function invocations, which you can track on their respective Logs tabs.
 <details><summary>Successful API gateway logs</summary>
@@ -100,7 +101,7 @@ CREATE TABLE `states`
     - Click `Attach file` and select code archive.
     - Fill `Entrypoint` field with `index.handler`
     - Select your service account
-    - Create 3 environment variables: `YDB_DATABASE`, `YDB_ENDPOINT`, `BOT_TOKEN`. <details><summary>How to find their values</summary>
+    - Create 3 environment variables: `YDB_DATABASE`, `YDB_ENDPOINT`, `BOT_TOKEN`. <details><summary>How to choose their values</summary>
       - `YDB_DATABASE` is a value from YDB database Overview tab: `Connection > Database`.
       - `YDB_ENDPOINT` is a value from YDB database Overview tab: `Connection > Endpoint`.
       - `BOT_TOKEN` is the token you received from BotFather after creating the new bot.</details>
