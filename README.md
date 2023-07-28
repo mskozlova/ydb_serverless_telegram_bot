@@ -25,7 +25,7 @@ You can check out the instance of this bot [here](https://t.me/ydb_serverless_ex
 
 ## Creating Yandex Cloud function
 
-1) Visit [Yandex Cloud page](https://cloud.yandex.com/) and click `Console` in upper right corner. Login into Yandex ID, or create account if you are not logged in yet.
+1) Visit [Yandex Cloud page](https://cloud.yandex.com/) and click `Console` in upper right corner. Login into Yandex ID, or create account.
 2) In Yandex Cloud console set up Yandex Cloud billing account, if you don't have one. **No payments will be needed to complete this instruction.**
 3) In Yandex Console create a folder for your resources. Choose any name. <details><summary>Screenshot</summary>
 ![Yandex Console Screenshot](screenshots/01-create-folder.png?raw=true "Title")</details>
@@ -49,8 +49,17 @@ You can check out the instance of this bot [here](https://t.me/ydb_serverless_ex
 
 ## Creating a bot and linking it with the function
 1) Create a telegram bot by sending `/newbot` command for BotFather in Telegram. <details><summary>Screenshot</summary>
-![Yandex Console Screenshot](screenshots/05-create-telegram-bot.png?raw=true "Title")</details>
-2) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway. All went well if you receive response `{"ok":true,"result":true,"description":"Webhook was set"}`.
+<img src="screenshots/05-create-telegram-bot.png" width="300"></details>
+2) (optional) Set up bot commands to create a menu. Send `/setcommands` to `BotFather`, choose your bot from the list and sent the following list of commands. <details><summary>Commands</summary><pre>
+  start - show welcome message and bot description
+  register - store your name and age in the database
+  cancel - stop registering process
+  show_data - show your name and age stored in the database
+  delete_account - delete your info from the database
+</pre>
+</details>
+
+3) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway. All went well if you receive response `{"ok":true,"result":true,"description":"Webhook was set"}`.
 - <details><summary>Request</summary>
   <pre>
   curl \
@@ -140,6 +149,25 @@ Note: the function does not do anything yet, except for waking up and going back
 
 </br>
 <b>Awesome! Now try your bot!</b>
+
+## What next?
+1) Play around with the bot. <details><summary>Bot command examples - screenshots</summary>
+`/start`</br>
+<img src="screenshots/20-bot_start.png" width="300">
+</br>
+`/register`</br>
+<img src="screenshots/21-bot_register.png" width="300">
+</details>
+
+2) Visit function's Logs tab to see logs for each input message an debug errors if something went wrong. Click the `eye` icon (`JSON` column) on each log to see additional details.<details><summary>Function logs - screenshot</summary>
+<img src="screenshots/22-function-logs.png" width="800">
+
+</details>
+
+3. Check out database tables' contents in YDB database Navigation tab.<details><summary>YDB table - screenshot</summary>
+<img src="screenshots/23-ydb-after-register.png" width="800">
+
+</details>
 
 # Testing
 TBD..
