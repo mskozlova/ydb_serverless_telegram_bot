@@ -21,7 +21,12 @@ set_user_state = f"""
 get_user_info = f"""
     DECLARE $user_id AS Int64;
     
-    SELECT * FROM `{USERS_INFO_TABLE_PATH}`
+    SELECT
+        user_id,
+        age,
+        first_name,
+        last_name
+    FROM `{USERS_INFO_TABLE_PATH}`
     WHERE user_id == $user_id;
 """
 

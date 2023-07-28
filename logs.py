@@ -30,22 +30,19 @@ def find_in_args(args, target_type):
 
 
 def find_in_kwargs(kwargs, target_type):
-    for kwarg in kwargs.values():
-        if isinstance(kwarg, target_type):
-            return kwarg
+    return find_in_args(kwargs.values(), target_type)
 
 
 def get_message_info(*args, **kwargs):
-    chat_id, text = "UNKNOWN", "UNKNOWN"
+    message_args = find_in_args(args, Message)
+    if message_args is not None:
+        return message_args.chat.id, message_args.text
 
-    if find_in_args(args, Message) is not None:
-        message = find_in_args(args, Message)
-        chat_id, text = message.chat.id, message.text
-    elif find_in_kwargs(kwargs, Message) is not None:
-        message = find_in_kwargs(args, Message)
-        chat_id, text = message.chat.id, message.text
+    message_kwargs = find_in_kwargs(kwargs, Message)
+    if message_kwargs is not None:
+        return message_kwargs.chat.id, message_kwargs.text
 
-    return chat_id, text
+    return "UNKNOWN", "UNKNOWN"
 
 
 def logged_execution(func):
@@ -53,32 +50,30 @@ def logged_execution(func):
         chat_id, text = get_message_info(*args, **kwargs)
 
         logger.info(
-            "[LOG] Starting {} - chat_id {}".format(func.__name__, chat_id),
+            f"[LOG] Starting {func.__name__} - chat_id {chat_id}",
             extra={
                 "text": text,
-                "arg": "{}".format(args),
-                "kwarg": "{}".format(kwargs),
+                "arg": str(args),
+                "kwarg": str(kwargs),
             },
         )
         try:
             func(*args, **kwargs)
             logger.info(
-                "[LOG] Finished {} - chat_id {}".format(func.__name__, chat_id),
+                f"[LOG] Finished {func.__name__} - chat_id {chat_id}",
                 extra={
                     "text": text,
-                    "arg": "{}".format(args),
-                    "kwarg": "{}".format(kwargs),
+                    "arg": str(args),
+                    "kwarg": str(kwargs),
                 },
             )
         except Exception as e:
             logger.error(
-                "[LOG] Failed {} - chat_id {} - exception {}".format(
-                    func.__name__, chat_id, e
-                ),
+                f"[LOG] Failed {func.__name__} - chat_id {chat_id} - exception {e}",
                 extra={
                     "text": text,
-                    "arg": "{}".format(args),
-                    "kwarg": "{}".format(kwargs),
+                    "arg": str(args),
+                    "kwarg": str(kwargs),
                     "error": e,
                     "traceback": traceback.format_exc(),
                 },
