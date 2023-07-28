@@ -1,11 +1,10 @@
 import os
 
 import ydb
-import ydb.iam
-
 
 ydb_driver_config = ydb.DriverConfig(
-    os.getenv("YDB_ENDPOINT"), os.getenv("YDB_DATABASE"),
+    os.getenv("YDB_ENDPOINT"),
+    os.getenv("YDB_DATABASE"),
     credentials=ydb.credentials_from_env_variables(),
     root_certificates=ydb.load_ydb_root_certificate(),
 )

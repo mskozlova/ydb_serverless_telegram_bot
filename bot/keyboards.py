@@ -1,6 +1,5 @@
 from telebot import types
 
-
 empty = types.ReplyKeyboardRemove()
 
 
@@ -9,7 +8,7 @@ def get_reply_keyboard(options, additional=None, **kwargs):
         row_width = kwargs["row_width"]
     else:
         row_width = len(options)
-    
+
     markup = types.ReplyKeyboardMarkup(
         row_width=row_width,
         resize_keyboard=True,
