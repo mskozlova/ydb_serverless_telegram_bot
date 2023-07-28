@@ -151,22 +151,13 @@ Note: the function does not do anything yet, except for waking up and going back
 <b>Awesome! Now try your bot!</b>
 
 ## What next?
-1) Play around with the bot. <details><summary>Bot command examples - screenshots</summary>
-`/start`</br>
-<img src="screenshots/20-bot_start.png" width="300">
-</br>
-`/register`</br>
-<img src="screenshots/21-bot_register.png" width="300">
+1) Play around with the bot. <details><summary>Bot command examples - screenshots</summary>`/start`</br><img src="screenshots/20-bot_start.png" width="300"></br>`/register`</br><img src="screenshots/21-bot_register.png" width="300">
 </details>
 
-2) Visit function's Logs tab to see logs for each input message an debug errors if something went wrong. Click the `eye` icon (`JSON` column) on each log to see additional details.<details><summary>Function logs - screenshot</summary>
-<img src="screenshots/22-function-logs.png" width="800">
-
+2) Visit function's Logs tab to see logs for each input message an debug errors if something went wrong. Click the `eye` icon (`JSON` column) on each log to see additional details.<details><summary>Function logs - screenshot</summary><img src="screenshots/22-function-logs.png" width="800">
 </details>
 
-3. Check out database tables' contents in YDB database Navigation tab.<details><summary>YDB table - screenshot</summary>
-<img src="screenshots/23-ydb-after-register.png" width="800">
-
+3. Check out database tables' contents in YDB database Navigation tab.<details><summary>YDB table - screenshot</summary><img src="screenshots/23-ydb-after-register.png" width="800">
 </details>
 
 # Testing
