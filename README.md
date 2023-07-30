@@ -61,19 +61,23 @@ You can check out the instance of this bot [here](https://t.me/ydb_serverless_ex
 
 3) Create a link between telegram bot and a function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway. All went well if you receive response `{"ok":true,"result":true,"description":"Webhook was set"}`.
 - <details><summary>Request</summary>
-  <pre>
+
+  ```
   curl \
     --request POST \
     --url https://api.telegram.org/bot<YOUR BOT TOKEN>/setWebhook \
     --header 'content-type: application/json' \
     --data '{"url": "<API gateway domain>/fshtb-function"}'
-  </pre>
+  ```
+
 </details>
 
 - <details><summary>Request for Windows</summary>
-  <pre>
+
+  ```
   curl --request POST --url https://api.telegram.org/bot<YOUR BOT TOKEN>/setWebhook --header "content-type:application/json" --data "{\"url\": \"<API gateway domain>/fshtb-function\"}"
-  </pre>
+  ```
+
 </details>
 </br>
 
@@ -98,7 +102,8 @@ Note: the function does not do anything yet, except for waking up and going back
 </details>
 
 - <details><summary>SQL script</summary>
-  <pre>
+
+  ```
   CREATE TABLE `user_personal_info`
   (
     `user_id` Uint64,
@@ -116,7 +121,8 @@ Note: the function does not do anything yet, except for waking up and going back
     `state` Utf8,
     PRIMARY KEY (`user_id`)
   );
-  </pre>
+  ```
+  
 </details>
 
 </br>
