@@ -56,8 +56,7 @@ You can check out the instance of this bot [here](https://t.me/ydb_serverless_ex
   cancel - stop registering process
   show_data - show your name and age stored in the database
   delete_account - delete your info from the database
-</pre>
-<img src="screenshots/05-1_bot_commands.png" width="400">
+  </pre><img src="screenshots/05-1_bot_commands.png" width="400">
 </details>
 
 3) Create a link between the telegram bot and the function. Run the following request from terminal, replacing `<YOUR BOT TOKEN>` with the token from BotFather and `<API gateway domain>` with `Default domain` value from Overview tab of your API gateway. All went well if you received response `{"ok":true,"result":true,"description":"Webhook was set"}`.
