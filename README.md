@@ -50,7 +50,7 @@ You can check out the instance of this bot [here](https://t.me/ydb_serverless_ex
 ## Creating a bot and linking it with the function
 1) Create a telegram bot by sending `/newbot` command for BotFather in Telegram. Give it a name and a login, then receive a token for your bot. <details><summary>Screenshot</summary>
 <img src="screenshots/05-create-telegram-bot.png" width="400"></details>
-2) (optional) Set up bot commands to create a menu. Send `/setcommands` to `BotFather`, choose your bot from the list and sent the following list of commands. This list will appear when clicking on the button in the bottom right corner of the bot chat. <details><summary>Commands</summary><pre>
+2) (optional) Set up bot commands to create a menu. Send `/setcommands` to `BotFather`, choose your bot from the list and sent the following list of commands. This list will appear when clicking on the button in the bottom left corner of the bot chat. <details><summary>Commands</summary><pre>
   start - show welcome message and bot description
   register - store your name and age in the database
   cancel - stop registering process
