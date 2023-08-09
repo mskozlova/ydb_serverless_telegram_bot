@@ -49,3 +49,19 @@ delete_user_info = f"""
     DELETE FROM `{STATES_TABLE_PATH}`
     WHERE user_id == $user_id;
 """
+
+update_user_info = f"""
+    DECLARE $user_id AS Uint64;
+    DECLARE $first_name AS Utf8;
+    DECLARE $last_name AS Utf8;
+    DECLARE $age AS Uint64;
+    
+    REPLACE INTO `{USERS_INFO_TABLE_PATH}`
+    SELECT
+        $user_id AS user_id,
+        $first_name AS first_name,
+        $last_name AS last_name,
+        $age AS age,
+    FROM `{USERS_INFO_TABLE_PATH}`
+    WHERE user_id == $user_id;
+"""

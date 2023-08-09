@@ -44,3 +44,14 @@ def get_user_info(pool, user_id):
 
 def delete_user_info(pool, user_id):
     execute_update_query(pool, queries.delete_user_info, user_id=user_id)
+
+
+def update_user_data(pool, user_id, first_name, last_name, age):
+    execute_update_query(
+        pool,
+        queries.update_user_info,
+        user_id=user_id,
+        first_name=first_name,
+        last_name=last_name,
+        age=age,
+    )

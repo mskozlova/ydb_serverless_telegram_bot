@@ -93,3 +93,8 @@ class RegisterState(StatesGroup):
 
 class DeleteAccountState(StatesGroup):
     are_you_sure = State()
+
+
+class ChangeDataState(StatesGroup):
+    select_field = State()
+    write_new_value = State()

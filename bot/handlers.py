@@ -157,3 +157,85 @@ def handle_finish_delete_account(message, bot, pool):
             texts.DELETE_ACCOUNT_CANCEL,
             reply_markup=keyboards.EMPTY,
         )
+
+
+@logged_execution
+def handle_change_data(message, bot, pool):
+    current_data = db_model.get_user_info(pool, message.from_user.id)
+
+    if not current_data:
+        bot.send_message(
+            message.chat.id, texts.NOT_REGISTERED, reply_markup=keyboards.EMPTY
+        )
+        return
+
+    bot.set_state(
+        message.from_user.id, states.ChangeDataState.select_field, message.chat.id
+    )
+    bot.send_message(
+        message.chat.id,
+        texts.SELECT_FIELD,
+        reply_markup=keyboards.get_reply_keyboard(texts.FIELD_LIST, ["/cancel"]),
+    )
+
+
+@logged_execution
+def handle_cancel_change_data(message, bot, pool):
+    bot.delete_state(message.from_user.id, message.chat.id)
+    bot.send_message(
+        message.chat.id,
+        texts.CANCEL_CHANGE,
+        reply_markup=keyboards.EMPTY,
+    )
+
+
+@logged_execution
+def handle_choose_field_to_change(message, bot, pool):
+    if message.text not in texts.FIELD_LIST:
+        bot.send_message(
+            message.chat.id,
+            texts.UNKNOWN_FIELD,
+            reply_markup=keyboards.get_reply_keyboard(texts.FIELD_LIST, ["/cancel"]),
+        )
+        return
+
+    bot.set_state(
+        message.from_user.id, states.ChangeDataState.write_new_value, message.chat.id
+    )
+    with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
+        data["field"] = message.text
+
+    bot.send_message(
+        message.chat.id,
+        texts.WRITE_NEW_VALUE.format(message.text),
+        reply_markup=keyboards.get_reply_keyboard(["/cancel"]),
+    )
+
+
+@logged_execution
+def handle_save_changed_data(message, bot, pool):
+    with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
+        field = data["field"]
+
+    new_value = message.text
+
+    if field == "age" and not new_value.isdigit():
+        bot.send_message(
+            message.chat.id,
+            texts.AGE_IS_NOT_NUMBER,
+            reply_markup=keyboards.get_reply_keyboard(["/cancel"]),
+        )
+        return
+    elif field == "age":
+        new_value = int(new_value)
+
+    bot.delete_state(message.from_user.id, message.chat.id)
+    current_data = db_model.get_user_info(pool, message.from_user.id)
+    current_data[field] = new_value
+    db_model.update_user_data(pool, **current_data)
+
+    bot.send_message(
+        message.chat.id,
+        texts.CHANGE_DATA_DONE,
+        reply_markup=keyboards.EMPTY,
+    )
